@@ -1,7 +1,17 @@
 <header class="fixed-top">
   <!-- Button to open or close -->
   <span (click)="toggle()">
-    <ng-content select=".tr-btn"></ng-content>
+
+  <div *ngIf="!open; then thenBlock; else elseBlock"></div>
+
+    <ng-template #thenBlock>
+      <ng-content select=".tr-btn-close"></ng-content>
+    </ng-template>
+
+    <ng-template #elseBlock>
+      <ng-content select=".tr-btn-open"></ng-content>
+    </ng-template>
+
   </span>
 
   <ng-content select=".tr-header"></ng-content>
@@ -16,7 +26,9 @@
   </aside>
   <div class="page">
     <div class="contents">
-      Content
+      <!-- Ici projection de router-outlet -->
+     <ng-content select=".tr-content"></ng-content>
+     
     </div>
     <footer>
       <ng-content select=".tr-footer"></ng-content>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PageSignInComponent } from './pages/page-sign-in/page-sign-in.component';
 import { PageSignUpComponent } from './pages/page-sign-up/page-sign-up.component';
 import { PageResetPasswordComponent } from './pages/page-reset-password/page-reset-password.component';
+import { LoginRoutingModule } from './login-routing.module';
 
 
 
@@ -13,7 +14,8 @@ import { PageResetPasswordComponent } from './pages/page-reset-password/page-res
     PageResetPasswordComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LoginRoutingModule
   ]
 })
 export class LoginModule { }
