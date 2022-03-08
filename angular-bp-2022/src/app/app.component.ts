@@ -10,8 +10,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angular-bp-2022';
 
-  prop = true; 
-
+  prop = true;
 
 
 }// ne rien écrire après cette ligne
