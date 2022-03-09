@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
     <li>Modules</li>
-    <li >AppRoutingModule</li>
+    <li >LoginRoutingModule</li>
 </ol>
 
 
@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/app-routing.module.ts</code>
+            <code>src/app/login/login-routing.module.ts</code>
         </p>
 
 
@@ -73,42 +73,21 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
-import { RouterModule, Routes, Router, PreloadAllModules } from &#x27;@angular/router&#x27;;
-import { PageResetPasswordComponent } from &#x27;./login/pages/page-reset-password/page-reset-password.component&#x27;;
-import { PageSignInComponent } from &#x27;./login/pages/page-sign-in/page-sign-in.component&#x27;;
-import { PageSignUpComponent } from &#x27;./login/pages/page-sign-up/page-sign-up.component&#x27;;
-import { PageListOrdersComponent } from &#x27;./orders/pages/page-list-orders/page-list-orders.component&#x27;;
-import { PageNotFoundComponent } from &#x27;./page-not-found/pages/page-not-found/page-not-found.component&#x27;;
-
+import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
+import { PageResetPasswordComponent } from &#x27;./pages/page-reset-password/page-reset-password.component&#x27;;
+import { PageSignInComponent } from &#x27;./pages/page-sign-in/page-sign-in.component&#x27;;
+import { PageSignUpComponent } from &#x27;./pages/page-sign-up/page-sign-up.component&#x27;;
 
 const routes: Routes &#x3D; [
-  {path:&quot;&quot;, redirectTo:&quot;/sign-in&quot;, pathMatch:&quot;full&quot;},
-  // instancier d&#x27;autres modules
-  {
-    path:&quot;orders&quot;,
-    loadChildren:() &#x3D;&gt;
-    &quot;import (&#x27;./orders/orders.module&#x27;).then((m)&#x3D;&gt; m.OrdersModule)&quot;
-  },
-  {
-    path: &#x27;**&#x27;,
-    loadChildren: () &#x3D;&gt;
-      &quot;import(&#x27;./page-not-found/page-not-found.module&#x27;).then(\
-        (m) &#x3D;&gt; m.PageNotFoundModule\
-      )&quot;,
-  }
+  {path:&quot;sign-in&quot;, component: PageSignInComponent},
+  {path:&quot;sign-up&quot;, component:PageSignUpComponent},
+  {path:&quot;reset-password&quot;, component : PageResetPasswordComponent},
 ];
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules
-  })],
-  exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-  constructor(private router : Router){
-    console.log(this.router.config)
-  }
-}
+export class LoginRoutingModule {}
 </code></pre>
     </div>
 </div>
@@ -155,7 +134,7 @@ export class AppRoutingModule {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppRoutingModule.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'LoginRoutingModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
