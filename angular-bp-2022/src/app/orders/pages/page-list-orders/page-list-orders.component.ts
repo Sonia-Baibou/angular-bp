@@ -9,8 +9,11 @@ import { OrdersService } from '../../services/orders.service';
 export class PageListOrdersComponent implements OnInit {
 
 
+  titre: string;
+
   db: any;
   constructor(private ordersService: OrdersService) {
+    this.titre = "Titre du Parent"
     // appel à notre collection
     this.ordersService.collection.subscribe((data)=> console.log(data))
   }
