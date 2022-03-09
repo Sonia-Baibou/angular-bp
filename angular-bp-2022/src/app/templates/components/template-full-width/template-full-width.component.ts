@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-template-full-width',
@@ -15,8 +15,8 @@ export class TemplateFullWidthComponent implements OnInit {
     console.log(this.title)
   }
 
-  ngOnChanges(){
-    console.log(this.title)
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
   }
 
   ngOnInit(): void {
