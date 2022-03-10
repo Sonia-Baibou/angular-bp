@@ -7,20 +7,23 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 })
 export class TemplateFullWidthComponent implements OnInit {
 
-  @Input() public title!: string;
+  @Input() public title!: any;
 
   constructor() {
     //this.title = "Titre"
     // undefined
-    console.log(this.title)
+    console.log(this.title, 'title template')
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
+  ngOnChanges(): void {
+    console.log(this.title, "ngOnChanges")
   }
 
   ngOnInit(): void {
-    console.log(this.title)
+    console.log(this.title, 'ngOninit')
   }
 
+  ngDoCheck(){
+    console.log(this.title, 'ngDoCheck')
+  }
 }

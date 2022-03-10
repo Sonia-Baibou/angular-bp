@@ -9,16 +9,21 @@ import { OrdersService } from '../../services/orders.service';
 export class PageListOrdersComponent implements OnInit {
 
 
-  titre: string;
+  titre: any;
 
-  db: any;
+
   constructor(private ordersService: OrdersService) {
-    this.titre = "Titre du Parent"
+    this.titre = {name: 'Liste orders'}
     // appel à notre collection
     this.ordersService.collection.subscribe((data)=> console.log(data))
   }
 
   ngOnInit(): void {
+  }
+
+  public changeTitle(): void{
+    // changer le titre au niveau d'une propriété
+    this.titre.name = "Nouveau nom"
   }
 
 }
