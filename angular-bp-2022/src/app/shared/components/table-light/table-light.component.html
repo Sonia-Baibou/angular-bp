@@ -1,1 +1,14 @@
-<p>table-light works!</p>
+<table class="table">
+  <!-- thead utile pour le référencement -->
+  <thead>
+    <!-- table row (ligne) -->
+    <tr>
+      <!--   table header cells (th) -->
+      <!-- *ngFor="let item of list" -->
+      <th *ngFor="let item of headers" scope="col">{{item}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-content></ng-content>
+  </tbody>
+</table>

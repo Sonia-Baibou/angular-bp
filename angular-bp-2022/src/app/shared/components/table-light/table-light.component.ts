@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Order } from 'src/app/core/models/order';
 
 @Component({
   selector: 'app-table-light',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableLightComponent implements OnInit {
 
-  constructor() { }
+  @Input() public headers!: string[];
+
+  constructor() {
+    // toujours en undefined car TS lu en premier
+    // console.log(this.headers)
+    // console.log(this.collection)
+  }
 
   ngOnInit(): void {
+    //console.log(this.headers)
+    //console.log(this.collection)
+  }
+
+  ngOnChanges(){
+    //console.log(this.headers)
+    //console.log(this.collection)
   }
 
 }

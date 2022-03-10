@@ -24,6 +24,6 @@ export class TemplateFullWidthComponent implements OnInit {
   }
 
   ngDoCheck(){
-    console.log(this.title, 'ngDoCheck')
+    // console.log(this.title, 'ngDoCheck')
   }
 }
