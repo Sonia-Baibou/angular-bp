@@ -2,6 +2,7 @@
   <!-- Button to open or close -->
   <span (click)="toggle()">
 
+
   <div *ngIf="!open; then thenBlock; else elseBlock"></div>
 
     <ng-template #thenBlock>

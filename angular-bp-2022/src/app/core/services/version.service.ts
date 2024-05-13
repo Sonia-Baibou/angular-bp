@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class VersionService {
 
-  public data$: BehaviorSubject<number> = new BehaviorSubject<number>(6)
+  public data$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
 
   constructor() { }
 

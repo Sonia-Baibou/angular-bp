@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from '../../services/orders.service';
@@ -16,16 +18,19 @@ export class PageListOrdersComponent implements OnInit {
   public states = Object.values(StateOrder);
 
   // en-têtes du tableau de type array
-  public headers = ['Type', 'Client', 'NbJours', 'Tjm HT', 'Total HT', 'Total TTC', 'State' ]
-  public collection!: Order[];
+  public headers = ['Action', 'Type', 'Client', 'NbJours', 'Tjm HT', 'Total HT', 'Total TTC', 'State' ]
+  // public collection!: Order[];
 
-  constructor(private ordersService: OrdersService) {
+  public collection$!: Observable<Order[]>
+
+  constructor(
+    private ordersService: OrdersService,
+    private router : Router
+    ) {
     this.titre = {name: 'Liste orders'}
     // appel à notre collection
-    this.ordersService.collection.subscribe((data)=> {
-      this.collection = data
-      console.log(this.collection)
-    })
+    this.ordersService.refreshCollection()
+    this.collection$ = this.ordersService.collection;
   }
 
   ngOnInit(): void {
@@ -50,8 +55,20 @@ export class PageListOrdersComponent implements OnInit {
     console.log(state, "state")
     // appel vers méthode du service changeState
     this.ordersService.changeState(item, <StateOrder>state).subscribe((res)=>{
-      item = res;
+      //item.state = res.state;
+      console.log(res instanceof Order)
+      Object.assign(item, res)
     })
+  }
+
+  public goToEdit(item: Order): void{
+    // redirection orders/edit/item.id
+    this.router.navigate(['orders', 'edit', item.id])
+  }
+
+  public deleteItem(item: Order): void{
+    // appel au service
+    this.ordersService.delete(item).subscribe()
   }
 
 

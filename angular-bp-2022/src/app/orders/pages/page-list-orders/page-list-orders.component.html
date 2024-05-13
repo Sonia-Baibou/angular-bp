@@ -1,17 +1,23 @@
-<app-template-full-width [title]="titre" *ngIf="collection" >
+<app-template-container [title]="titre" *ngIf="collection$ | async as collection" >
   <!-- {{collection | json }} -->
   <!-- <button (click)="changeTitle()">change Title</button> -->
   <app-table-light [headers]="headers">
     <!-- utiliser ng-content -->
     <tr *ngFor="let item of collection">
       <!-- Afficher les props de item -->
+      <td>
+        <app-icon-edit (click)="goToEdit(item)"></app-icon-edit>
+        <!-- ajouter une icone avec un event -->
+        <!-- créer méthode dans le service et faire appel http.delete -->
+        <app-icon-delete (click)="deleteItem(item)"></app-icon-delete>
+      </td>
       <td>{{item.typePresta}}</td>
       <td>{{item.client | uppercase }}</td>
       <td>{{item.nbJours}}</td>
       <td>{{item.tjmHt}}</td>
       <td>{{ item | total | currency }}</td>
       <td>{{ item | total :true | currency}}</td>
-      <td>
+      <td [appState]="item.state">
         <select (change)="changeState(item, $event)">
           <option
           *ngFor="let state of states"
@@ -23,6 +29,11 @@
     </tr>
   </app-table-light>
 
-  <app-btn>Add</app-btn>
+  <!--  "btn btn-primary"-->
+  <app-btn
+  btn="btn btn-primary"
+  route="add"
+  label="Ajouter"
+  ></app-btn>
 
-</app-template-full-width>
+</app-template-container>
